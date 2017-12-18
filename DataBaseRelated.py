@@ -24,6 +24,15 @@ def search_username(username,cur):
         cur.execute(sql)
         return cur.rowcount
 
+def search_userstatus(username,cur):
+        # username = input('请输入用户名:')
+        # if len(username)>30:
+        #     print('用户名过长，请重新输入！')
+        #     continue
+        sql = "select * from Users where username = '" + username + "'"
+        cur.execute(sql)
+        results = cur.fetchall()
+        return results[0][2]
 
 
 

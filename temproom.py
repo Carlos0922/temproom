@@ -8,9 +8,10 @@ from PyQt5.QtWidgets import (QApplication, QComboBox, QDialog,
         QDialogButtonBox, QFormLayout, QGridLayout, QGroupBox, QHBoxLayout,
         QLabel, QLineEdit, QMenu, QMenuBar, QPushButton,QVBoxLayout, QDesktopWidget,QMessageBox)
 
-import sys,socket
+import sys
 import send,record,play,threading
 import DataBaseRelated
+import qdarkstyle
 
 class Dialog(QDialog):
     number=0
@@ -26,7 +27,7 @@ class Dialog(QDialog):
         self.l2 = QLabel('房间号：')
         self.l3 = QLabel(str(username))
         self.l4 = QLabel(str(roomnumber))
-        self.b1 = QPushButton('上线')
+        self.b1 = QPushButton('连接服务器')
         self.b2 = QPushButton('下线')
         self.b1.clicked.connect(self.connect)
         self.b2.clicked.connect(self.close)
@@ -85,12 +86,13 @@ class Dialog(QDialog):
         layout.addLayout(v_box,0,0,1,1)
         # self.formGroupBox = QGroupBox("房间内用户")
         layout.addWidget(self.formGroupBox,2,0,5,2)
-        layout.addWidget(self.b1,7,1,1,1)
-        layout.addWidget(self.b2, 8, 1, 1, 1)
+        layout.addWidget(self.b1,7,0,1,1)
+        layout.addWidget(self.b2,7,1,1,1)
         # layout.addWidget(self.user,2,0,0,2)
 
         self.setLayout(layout)
         self.setWindowTitle('Temproom')
+        self.setStyleSheet(qdarkstyle.load_stylesheet_pyqt5())
         self.resize(250,600)
         self.center()
 
